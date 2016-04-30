@@ -166,16 +166,14 @@
     };
 
     var appendLabel = function (gParent, yAxisMapping, index, hasLabel, datum) {
-      var fullItemHeight = (itemHeight + itemMargin),
-          rowsDown = ((fullItemHeight + fullItemHeight) * (yAxisMapping[index] || 1));
+      var fullItemHeight    = itemHeight + itemMargin;
+      var rowsDown          =  margin.top + (fullItemHeight/2) + fullItemHeight * (yAxisMapping[index] || 1);
 
-      gParent.append('text')
-             .attr('class', 'timeline-label')
-             .attr('transform', 'translate(' + labelMargin + ',' + rowsDown + ')')
-             .text(hasLabel ? labelFunction(datum.label) : datum.id)
-             .on('click', function (d, i) {
-                click(d, index, datum);
-              });
+      gParent.append("text")
+        .attr("class", "timeline-label")
+        .attr("transform", "translate(" + labelMargin + "," + rowsDown + ")")
+        .text(hasLabel ? labelFunction(datum.label) : datum.id)
+        .on("click", function (d, i) { click(d, index, datum); });
     };
 
     function timeline (gParent) {
